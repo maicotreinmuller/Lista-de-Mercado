@@ -1,0 +1,213 @@
+/* Estilo do corpo e elementos */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #111;
+    color: #fff;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Botões adicionar das páginas meta, cartão, conta e item */
+.add-button {
+    display: flexbox;
+    margin: 20px auto;
+    font-size: 16px;
+    color: #ffffff;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #333;
+    border: 2px solid #333;
+    border-radius: 8px;
+}
+
+/* Estilo dos Cabeçalhos de Itens */
+.categories-header {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+    visibility: hidden;
+    gap: 10px;
+}
+
+.categories-header.visible {
+    visibility: visible;
+}
+
+.selected-count {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.contador {
+    background-color: #333;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #ffffff;
+    margin-left: 5px;
+    font-weight: bold;
+}
+
+.actions button {
+    border: none;
+    padding: 8px 25px;
+    cursor: pointer;
+}
+
+.actions button.select-all {
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.actions .delete-selected {
+    background-color: #dc3545;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* Estilo dos Itens */
+.categories {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+h2 {
+    margin: 0;
+    padding: 10px 0;
+    color: #f0f0f0;
+    text-align: center;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background-image: linear-gradient(to right, #36363657, #88888871);
+    margin: 10px 0;
+}
+
+.category-item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background-color: #333;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.category-item-container.selected {
+    background-color: #dc3545;
+}
+
+.item-mercado {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-mercado .titulo {
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.item-mercado .descricao {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.quantidade {
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Botão de Submissão do Modal */
+.transaction-button {
+    width: 100%;
+    padding: 10px;
+    color: #fff;
+    background-color: #285fa7;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Estilos dos Modais */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.151);
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.modal-content {
+    background-color: rgba(51, 51, 51, 0.877);
+    padding: 20px;
+    border-radius: 8px;
+    width: 400px;
+    max-width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.modal-close {
+    cursor: pointer;
+    font-size: 24px;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.modal-form-group {
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
+    font-size: 14px;
+}
+
+.modal-form-group input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #555;
+    color: #fff;
+    box-sizing: border-box;
+    margin-top: 5px;
+}
