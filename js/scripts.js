@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('itensMercado', JSON.stringify(itensMercadoArray));
             carregarItens();
         } else {
-            alert('Por favor, insira um nome para o item.');
+            mostrarAlertaCustom('Por favor, insira um nome para o item.');
         }
     });
 
@@ -241,18 +241,28 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdownCabecalho.classList.remove('ativo');
     });
 
-    // Função para compartilhar no WhatsApp
-    botaoCompartilharWhatsApp.addEventListener('click', () => {
-        let mensagem = '*Minha lista de mercado:*\n\n';
-        itensMercadoArray.forEach(item => {
-            mensagem += `${item.nome} - Qtd: ${item.quantidade || 1}, Valor: R$ ${item.valor || 0}\n`;
-        });
-        mensagem += `\n*Total: ${subtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}*`;
-
-        mensagem = encodeURIComponent(mensagem);
-        window.location.href = `https://wa.me/?text=${mensagem}`;
-        dropdownCabecalho.classList.remove('ativo');
+// Função para compartilhar no WhatsApp
+botaoCompartilharWhatsApp.addEventListener('click', () => {
+    let mensagem = '*Minha lista de mercado:*\n\n';
+    itensMercadoArray.forEach(item => {
+        // Formatar quantidade e valor
+        const quantidade = item.quantidade ? item.quantidade.toLocaleString('pt-BR') : '1';
+        const valor = item.valor ? item.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' }) : 'R$ 0,00';
+        
+        // Adicionar o item formatado com um hífen na frente
+        mensagem += `- ${item.nome} - Qtd: ${quantidade}, Valor: ${valor}\n`;
     });
+    
+    // Formatar o total para a moeda brasileira
+    const totalFormatado = subtotal.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 2 });
+
+    mensagem += `\n*Total: ${totalFormatado}*`;
+
+    mensagem = encodeURIComponent(mensagem);
+    window.location.href = `https://wa.me/?text=${mensagem}`;
+    dropdownCabecalho.classList.remove('ativo');
+});
+
 
     // Evento para fechar dropdowns e modais ao clicar fora
     document.addEventListener('click', fecharTodosDropdowns);
@@ -260,3 +270,25 @@ document.addEventListener('DOMContentLoaded', () => {
     // Carregar os itens da lista de mercado inicialmente
     carregarItens();
 });
+
+// Função para mostrar um alerta customizado
+function mostrarAlertaCustom(mensagem) {
+    // Cria o elemento de alerta
+    const alerta = document.createElement('div');
+    alerta.className = 'alerta-custom';
+    alerta.textContent = mensagem;
+
+    // Adiciona o alerta ao body
+    document.body.appendChild(alerta);
+
+    // Mostra o alerta com uma classe adicional
+    setTimeout(() => {
+        alerta.classList.add('mostrar');
+    }, 10); // Pequeno delay para ativar a transição
+
+    // Remove o alerta após 3 segundos
+    setTimeout(() => {
+        alerta.classList.remove('mostrar');
+        setTimeout(() => alerta.remove(), 300); // Remove completamente após a transição
+    }, 3000);
+}
