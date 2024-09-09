@@ -2,146 +2,203 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #111;
+    background-color: #1c1c1e;
     color: #fff;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     height: 100vh;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* Botões adicionar das páginas meta, cartão, conta e item */
-.add-button {
-    display: flexbox;
-    margin: 20px auto;
-    font-size: 16px;
-    color: #ffffff;
-    cursor: pointer;
-    text-align: center;
-    width: 100%;
-    padding: 10px 20px;
-    background-color: #333;
-    border: 2px solid #333;
-    border-radius: 8px;
-}
-
-/* Estilo dos Cabeçalhos de Itens */
-.categories-header {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 20px;
-    visibility: hidden;
-    gap: 10px;
-}
-
-.categories-header.visible {
-    visibility: visible;
-}
-
-.selected-count {
-    font-size: 15px;
-    display: flex;
-    align-items: center;
-}
-
-.contador {
-    background-color: #333;
-    padding: 4px 8px;
-    border-radius: 4px;
-    color: #ffffff;
-    margin-left: 5px;
-    font-weight: bold;
-}
-
-.actions button {
-    border: none;
-    padding: 8px 25px;
-    cursor: pointer;
-}
-
-.actions button.select-all {
-    background-color: #333;
-    color: #fff;
-    border-radius: 5px;
-}
-
-.actions .delete-selected {
-    background-color: #dc3545;
-    color: #fff;
-    border-radius: 5px;
-}
-
-/* Estilo dos Itens */
-.categories {
+/* Container principal */
+.container {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
-    gap: 10px;
-}
-
-h2 {
-    margin: 0;
-    padding: 10px 0;
-    color: #f0f0f0;
-    text-align: center;
+    gap: 15px;
+    overflow-y: auto;
+    padding-bottom: 100px; /* Para garantir espaço para o rodapé */
 }
 
 hr {
     border: none;
     height: 2px;
-    background-image: linear-gradient(to right, #36363657, #88888871);
+    background-color: #3a3a3c;
     margin: 10px 0;
 }
 
-.category-item-container {
+/* Campo de entrada para adicionar itens */
+.campo-input {
     display: flex;
-    justify-content: space-between;
+    gap: 10px;
     align-items: center;
-    padding: 15px;
-    background-color: #333;
+    justify-content: center;
+}
+
+.campo-input input {
+    width: 70%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3a3a3c;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.botao-adicionar-item {
+    background-color: #333; /* Vermelho para remover */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    font-size: 20px; /* Tamanho do ícone */
+}
+
+/* Lista de itens */
+.itens-mercado {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.item-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #2c2c2e;
     border-radius: 8px;
     transition: background-color 0.3s ease;
+    border: 1px solid #3a3a3c;
+    position: relative;
 }
 
-.category-item-container.selected {
-    background-color: #dc3545;
-}
-
+/* Ajuste do item para o estilo de coluna */
 .item-mercado {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+}
+
+.item-mercado .titulo,
+.item-mercado .valor,
+.item-mercado .quantidade {
+    font-size: 14px;
+    color: #fff;
 }
 
 .item-mercado .titulo {
     font-size: 16px;
-    font-weight: bold;
+}
+
+/* Ajustes para o botão de menu (três pontos) */
+.menu-opcoes {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
     color: #fff;
+    cursor: pointer;
 }
 
-.item-mercado .descricao {
-    font-size: 14px;
-    color: #ffffff;
+/* Estilo do dropdown de opções (três pontos) */
+.dropdown-opcoes {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 10px;
+    background-color: #3a3a3c;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1003;
 }
 
-.quantidade {
-    font-size: 16px;
-    font-weight: bold;
-    color: #ffffff;
+.dropdown-opcoes.ativo {
+    display: block;
 }
 
-/* Botão de Submissão do Modal */
-.transaction-button {
+.dropdown-opcoes button {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    color: #fff;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dropdown-opcoes button:hover {
+    background-color: #4a4a4c;
+}
+
+/* Botões de ações */
+.botao-transacao {
+    margin-top: 5px;
     width: 100%;
     padding: 10px;
     color: #fff;
-    background-color: #285fa7;
+    background-color: #32d74b;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.botao-transacao:hover {
+    background-color: #34c759;
+}
+
+/* Botão para adicionar ao carrinho */
+.botao-adicionar-carrinho {
+    background-color: #34c75900; /* Verde para adicionar */
+    color: #dd4444;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    font-size: 35px; /* Tamanho do ícone */
+    margin-left: 10px; /* Espaçamento à esquerda */
+}
+
+
+/* Botão para remover do carrinho */
+.botao-remover-carrinho {
+    background-color: #00000000; /* Vermelho para remover */
+    color: #33b373;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    font-size: 35px; /* Tamanho do ícone */
+    margin-left: 10px; /* Espaçamento à esquerda */
+}
+
+.botao-remover-carrinho:hover {
+    background-color: #ff453a;
+}
+
+.subtotal {
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
 }
 
 /* Estilos dos Modais */
@@ -152,15 +209,15 @@ hr {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.151);
+    background-color: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(10px);
     justify-content: center;
     align-items: center;
     z-index: 1001;
 }
 
-.modal-content {
-    background-color: rgba(51, 51, 51, 0.877);
+.modal-conteudo {
+    background-color: #2c2c2e;
     padding: 20px;
     border-radius: 8px;
     width: 400px;
@@ -171,7 +228,7 @@ hr {
     box-sizing: border-box;
 }
 
-.modal-header {
+.modal-cabecalho {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -179,14 +236,14 @@ hr {
     width: 100%;
 }
 
-.modal-close {
+.modal-fechar {
     cursor: pointer;
     font-size: 24px;
     color: #fff;
     transition: color 0.3s ease;
 }
 
-.modal-form-group {
+.modal-form-grupo {
     margin-bottom: 15px;
     width: 100%;
     max-width: 350px;
@@ -194,20 +251,122 @@ hr {
     flex-direction: column;
 }
 
-.modal-form-group label {
+.modal-form-grupo label {
     display: block;
     margin-bottom: 5px;
     color: #fff;
     font-size: 14px;
 }
 
-.modal-form-group input {
+.modal-form-grupo input {
     width: 100%;
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #555;
+    background-color: #3a3a3c;
     color: #fff;
     box-sizing: border-box;
     margin-top: 5px;
+}
+
+/* Notificação */
+.notificacao {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1002;
+    font-size: 14px;
+    animation: fadeInOut 2s forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+/* Ajuste para o contêiner do item */
+.item-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px; /* Espaçamento entre os itens */
+}
+
+.item-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px;
+    background-color: #2c2c2e;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    border: 1px solid #3a3a3c;
+    width: 100%; /* Ocupa o máximo de largura permitido */
+}
+
+/* Estilo do subtotal dentro do cabeçalho */
+.subtotal {
+    text-align: center;
+}
+
+/* Menu de ícone */
+.menu-opcoes {
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50%;
+}
+
+.menu-principal {
+    position: absolute; 
+    top: 10px; 
+    right: 10px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+
+/* Estilo do dropdown de opções no cabeçalho */
+.dropdown-opcoes {
+    display: none;
+    position: absolute;
+    top: 40px; /* Abaixo do botão de menu */
+    right: 10px;
+    background-color: #3a3a3c;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1001; /* Para manter o dropdown acima de outros elementos */
+}
+
+.dropdown-opcoes.ativo {
+    display: block;
+}
+
+.dropdown-opcoes button {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    color: #fff;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.dropdown-opcoes button:hover {
+    background-color: #4a4a4c;
 }

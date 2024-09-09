@@ -3,56 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Mercado</title>
+    <title>Lista de Compras</title>
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <div class="container">
+        <!-- Novo Cabeçalho com Subtotal -->
+        <div class="cabecalho">
+            <div class="subtotal">
+                <h3>Total de compras: <span id="total-compras">R$ 0,00</span></h3>
+            </div>
+            <!-- Alteração do ícone para bx-menu -->
+            <button class="menu-principal" id="menu-cabecalho">
+                <i class='bx bx-menu'></i>
+            </button>
+            <div class="dropdown-opcoes" id="dropdown-cabecalho">
+                <button id="excluir-lista">Excluir lista</button>
+                <button id="compartilhar-whatsapp">Compartilhar no WhatsApp</button>
+            </div>
+        </div>
 
-<div class="container">
-    <h2>Lista de Mercado</h2>
-    <hr>
-    <button id="open-item-modal" class="add-button">Adicionar Item</button>
-
-    <!-- Cabeçalho de seleção -->
-    <div class="categories-header" id="items-header">
-        <div class="selected-count" id="selected-count">Adicionados: <span class="contador">01</span></div>
-        <div class="actions">
-            <button class="select-all" id="select-all-btn">Selecionar tudo</button>
-            <button class="delete-selected" id="delete-selected-btn">Excluir</button>
+        <!-- Campo de entrada para adicionar itens -->
+        <div class="campo-input">
+            <input type="text" id="nome-item" placeholder="Digite o nome do item">
+            <button id="adicionar-item" class="botao-adicionar-item"><i class='bx bx-plus'></i></button>
+        </div>
+        <hr>
+        <!-- Lista de Itens -->
+        <div class="itens-mercado" id="lista-itens">
+            <!-- Itens da lista de compras e do carrinho serão adicionados aqui -->
         </div>
     </div>
 
-    <hr>
-
-    <div class="categories" id="item-list">
-        <!-- Itens da lista de mercado serão adicionados aqui -->
+    <!-- Modal para Adicionar Valor ao Item -->
+    <div id="modal-valor" class="modal">
+        <div class="modal-conteudo">
+            <div class="modal-cabecalho">
+                <h3>Adicionar valor ao item</h3>
+                <span class="modal-fechar" id="fechar-modal-valor">&times;</span>
+            </div>
+            <div class="modal-form-grupo">
+                <label for="valor-item">Valor Unitário</label>
+                <input type="tel" id="valor-item" placeholder="R$ 0,00">
+            </div>
+            <div class="modal-form-grupo">
+                <label for="quantidade-item">Quantidade</label>
+                <input type="number" id="quantidade-item" placeholder="1">
+            </div>
+            <hr>
+            <button id="confirmar-valor" class="botao-transacao">Adicionar Valor</button>
+        </div>
     </div>
-</div>
 
-<!-- Modal para Adicionar Item -->
-<div id="item-modal" class="modal">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3>Adicionar Item</h3>
-            <span class="modal-close" id="close-item-modal">&times;</span>
-        </div>
-        <div class="modal-form-group">
-            <label for="item-name">Nome do Item</label>
-            <input type="text" id="item-name" placeholder="Nome do Item">
-        </div>
-        <div class="modal-form-group">
-            <label for="item-quantity">Quantidade</label>
-            <input type="number" id="item-quantity" placeholder="Quantidade" min="1">
-        </div>
-        <div class="modal-form-group">
-            <label for="item-description">Descrição</label>
-            <input type="text" id="item-description" placeholder="Adicione uma descrição (opcional)">
-        </div>
-        <button id="add-item-submit" class="transaction-button">Adicionar Item</button>
-    </div>
-</div>
-
-<script src="js/scripts.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
+
 </html>
