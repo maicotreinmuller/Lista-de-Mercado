@@ -307,7 +307,7 @@ hr {
     display: flex;
     align-items: center;
     gap: 10px;
-    animation: fadeInOut 3s ease forwards; /* Animação de entrada e saída */
+    animation: fadeInOut 1s ease forwards; /* Animação de entrada e saída */
 }
 
 @keyframes fadeInOut {
@@ -369,7 +369,7 @@ hr {
     font-size: 16px;
     z-index: 1000; /* Certifique-se de que a notificação fique acima de outros elementos */
     opacity: 0; /* Começa invisível */
-    transition: opacity 0.3s ease; /* Animação para suavizar a entrada */
+    transition: opacity 0.1s ease; /* Animação para suavizar a entrada */
     text-align: center;
     width: 300px;
     max-width: 90%;

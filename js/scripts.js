@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função para abrir o modal de valores
     function abrirModalValor(item) {
+        limparCamposModalValor(); // Limpa os campos antes de abrir o modal
         modalValor.style.display = 'flex';
         botaoConfirmarValor.onclick = () => {
             const valor = converterParaNumero(document.getElementById('valor-item').value) || 0;
@@ -60,12 +61,18 @@ document.addEventListener('DOMContentLoaded', () => {
             mostrarNotificacao('Valor adicionado');
             carregarItens(); // Atualiza a lista para exibir o valor e quantidade
         };
-    }
+    }   
+
+    function limparCamposModalValor() {
+        document.getElementById('valor-item').value = '';
+        document.getElementById('quantidade-item').value = '';
+    }   
 
     // Função para fechar o modal de valores
     function fecharModalValor() {
         modalValor.style.display = 'none';
-    }
+        limparCamposModalValor(); // Limpa os campos do modal quando fechado
+    }    
 
     // Função para mostrar notificação
     function mostrarNotificacao(mensagem) {
@@ -73,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         notificacao.className = 'notificacao';
         notificacao.textContent = mensagem;
         document.body.appendChild(notificacao);
-        setTimeout(() => notificacao.remove(), 2000);
+        setTimeout(() => notificacao.remove(), 200);
     }
 
     // Função para carregar itens na lista de mercado
@@ -290,5 +297,5 @@ function mostrarAlertaCustom(mensagem) {
     setTimeout(() => {
         alerta.classList.remove('mostrar');
         setTimeout(() => alerta.remove(), 300); // Remove completamente após a transição
-    }, 3000);
+    }, 300);
 }
