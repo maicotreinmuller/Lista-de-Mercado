@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         notificacao.className = 'notificacao';
         notificacao.textContent = mensagem;
         document.body.appendChild(notificacao);
-        setTimeout(() => notificacao.remove(), 200);
+        setTimeout(() => notificacao.remove(), 2000);
     }
 
     // Função para carregar itens na lista de mercado
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('itensMercado', JSON.stringify(itensMercadoArray));
             carregarItens();
         } else {
-            mostrarAlertaCustom('Por favor, insira um nome para o item.');
+            mostrarAlertaCustom('Por favor, insira um nome para o item');
         }
     });
 
@@ -296,6 +296,6 @@ function mostrarAlertaCustom(mensagem) {
     // Remove o alerta após 3 segundos
     setTimeout(() => {
         alerta.classList.remove('mostrar');
-        setTimeout(() => alerta.remove(), 300); // Remove completamente após a transição
-    }, 300);
+        setTimeout(() => alerta.remove(), 2000); // Remove completamente após a transição
+    }, 2000);
 }

@@ -25,9 +25,10 @@ body {
 hr {
     border: none;
     height: 2px;
-    background-color: #3a3a3c;
+    background-image: linear-gradient(to right, #424242, #272727);
     margin: 10px 0;
 }
+
 
 /* Campo de entrada para adicionar itens */
 .campo-input {
@@ -138,12 +139,10 @@ hr {
     top: 40px; /* Abaixo do botão de menu */
     right: 25px;
     padding: 8px 10px;
-    background-color: rgba(58, 58, 60, 0.733); /* Cor de fundo com transparência */
+    background-color: rgba(58, 58, 60, 0.993); /* Cor de fundo com transparência */
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     z-index: 1001; /* Para manter o dropdown acima de outros elementos */
-    backdrop-filter: blur(10px); /* Aplica o blur ao fundo do dropdown */
-    -webkit-backdrop-filter: blur(10px); /* Suporte para navegadores WebKit */
 }
 
 .dropdown-opcoes.ativo {
@@ -221,7 +220,23 @@ hr {
 .subtotal {
     width: 100%;
     text-align: center;
-    margin-top: 5px;
+    font-size: 20px;
+    margin: 0; /* Remove margens */
+}
+
+.titulo-subtotal {
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    margin-top: 25px;
+}
+
+.titulo-subtotal h3 {
+    margin: -5px; /* Remove margens */
+}
+
+.subtotal h2 {
+    margin: 0; /* Remove margens */
 }
 
 /* Estilos dos Modais */
@@ -295,9 +310,10 @@ hr {
 /* CSS para notificação de alerta */
 .notificacao {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    background-color: #f44336; /* Cor de fundo vermelha para alerta */
+    top: 20px; /* Ajuste a partir do topo */
+    left: 50%; /* Posiciona o elemento no centro horizontalmente */
+    transform: translateX(-50%); /* Centraliza o elemento */
+    background-color: rgb(53, 53, 53); 
     color: white; /* Cor do texto */
     padding: 15px 20px;
     border-radius: 8px;
@@ -305,30 +321,33 @@ hr {
     font-size: 16px;
     z-index: 1000; /* Certifique-se de que a notificação fique acima de outros elementos */
     display: flex;
-    align-items: center;
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    text-align: center; /* Centraliza o texto */
     gap: 10px;
-    animation: fadeInOut 3s ease forwards; /* Animação de entrada e saída */
+    animation: slideDownUp 3s ease forwards; /* Animação de descer e subir */
+    width: 300px;
 }
 
-@keyframes fadeInOut {
+
+@keyframes slideDownUp {
     0% {
         opacity: 0;
-        transform: translateX(100%); /* Começa fora da tela pela direita */
+        transform: translate(-50%, -100%); /* Começa fora da tela por cima */
     }
     10% {
         opacity: 1;
-        transform: translateX(0); /* Entra na tela */
+        transform: translate(-50%, 0); /* Entra na tela descendo */
     }
     90% {
         opacity: 1;
-        transform: translateX(0); /* Mantém na tela */
+        transform: translate(-50%, 0); /* Mantém na tela */
     }
     100% {
         opacity: 0;
-        transform: translateX(100%); /* Sai da tela pela direita */
+        transform: translate(-50%, -100%); /* Sai da tela subindo */
     }
 }
-
 
 /* Ajuste para o contêiner do item */
 .item-wrapper {
@@ -358,21 +377,21 @@ hr {
 /* CSS para o alerta customizado */
 .alerta-custom {
     position: fixed;
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #f44336; /* Cor de fundo vermelha para alertas */
+    top: 20px; /* Ajuste a partir do topo */
+    left: 50%; /* Posiciona o elemento no centro horizontalmente */
+    transform: translateX(-50%); /* Centraliza o elemento */
+    background-color: rgb(53, 53, 53); 
     color: white; /* Cor do texto */
     padding: 15px 20px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-size: 16px;
+    justify-content: center; /* Centraliza horizontalmente */
     z-index: 1000; /* Certifique-se de que a notificação fique acima de outros elementos */
-    opacity: 0; /* Começa invisível */
-    transition: opacity 0.3s ease; /* Animação para suavizar a entrada */
-    text-align: center;
+    display: flex;
+    align-items: center;
+    animation: slideDownUp 3s ease forwards; /* Animação de descer e subir */
     width: 300px;
-    max-width: 90%;
 }
 
 /* Classe para mostrar o alerta */
@@ -388,4 +407,9 @@ textarea:focus,
 a:focus {
     outline: none;
     box-shadow: none;
+}
+
+*:focus {
+    outline: none !important;
+    box-shadow: none !important;
 }
