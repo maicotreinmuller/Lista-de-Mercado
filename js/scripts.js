@@ -111,36 +111,39 @@ document.addEventListener('DOMContentLoaded', () => {
         titulo.className = 'titulo';
         titulo.textContent = `${item.nome}`;
     
-        const menuOpcoes = document.createElement('button');
-        menuOpcoes.className = 'menu-opcoes';
-        menuOpcoes.innerHTML = '<i class="bx bx-dots-vertical-rounded"></i>';
-        menuOpcoes.addEventListener('click', (e) => {
-            e.stopPropagation();
-            alternarDropdownOpcoes(itemContainer);
-        });
+        // Adiciona o botão de menu e dropdown de opções apenas se o item não estiver no carrinho
+        if (!item.noCarrinho) {
+            const menuOpcoes = document.createElement('button');
+            menuOpcoes.className = 'menu-opcoes';
+            menuOpcoes.innerHTML = '<i class="bx bx-dots-vertical-rounded"></i>';
+            menuOpcoes.addEventListener('click', (e) => {
+                e.stopPropagation();
+                alternarDropdownOpcoes(itemContainer);
+            });
     
-        const dropdownOpcoes = document.createElement('div');
-        dropdownOpcoes.className = 'dropdown-opcoes';
-        dropdownOpcoes.innerHTML = `
-            <button class="adicionar-valor">Adicionar Valor</button>
-            <button class="remover">Excluir</button>
-        `;
+            const dropdownOpcoes = document.createElement('div');
+            dropdownOpcoes.className = 'dropdown-opcoes';
+            dropdownOpcoes.innerHTML = `
+                <button class="adicionar-valor">Adicionar Valor</button>
+                <button class="remover">Excluir</button>
+            `;
     
-        dropdownOpcoes.querySelector('.adicionar-valor').addEventListener('click', (e) => {
-            e.stopPropagation();
-            abrirModalValor(item);
-        });
+            dropdownOpcoes.querySelector('.adicionar-valor').addEventListener('click', (e) => {
+                e.stopPropagation();
+                abrirModalValor(item);
+            });
     
-        dropdownOpcoes.querySelector('.remover').addEventListener('click', (e) => {
-            e.stopPropagation();
-            removerItem(item);
-        });
+            dropdownOpcoes.querySelector('.remover').addEventListener('click', (e) => {
+                e.stopPropagation();
+                removerItem(item);
+            });
+    
+            itemMercado.appendChild(menuOpcoes);
+            itemContainer.appendChild(dropdownOpcoes);
+        }
     
         itemMercado.appendChild(titulo);
-        itemMercado.appendChild(menuOpcoes);
-    
         itemContainer.appendChild(itemMercado);
-        itemContainer.appendChild(dropdownOpcoes);
     
         const containerWrapper = document.createElement('div');
         containerWrapper.className = 'item-wrapper';
@@ -156,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
         containerWrapper.appendChild(botaoAdicionarAoCarrinho);
         listaItens.appendChild(containerWrapper);
-    }
+    }    
 
     // Função para adicionar item ao carrinho
     function adicionarAoCarrinho(item) {
