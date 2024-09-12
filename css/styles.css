@@ -227,7 +227,7 @@ hr {
 .titulo-subtotal {
     width: 100%;
     text-align: center;
-    font-size: 10px;
+    font-size: 12px;
     margin-top: 25px;
 }
 
@@ -405,11 +405,30 @@ input:focus,
 select:focus,
 textarea:focus,
 a:focus {
-    outline: none;
-    box-shadow: none;
+    outline: none !important;
+    box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
 }
 
 *:focus {
     outline: none !important;
     box-shadow: none !important;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button,
+input,
+select,
+textarea,
+.dropdown-opcoes.ativo,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Bloqueio de seleção de texto na aplicação*/
+.user-select-none {
+    -webkit-user-select: none;
+    -moz-user-select: none;   
+    -ms-user-select: none;     
+    user-select: none;        
 }

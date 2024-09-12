@@ -245,6 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para excluir a lista
     botaoExcluirLista.addEventListener('click', () => {
         itensMercadoArray = [];
+        subtotal = 0; //Zera o subtotal
         localStorage.removeItem('itensMercado');
         carregarItens();
         mostrarNotificacao('Lista excluída');
@@ -302,3 +303,10 @@ function mostrarAlertaCustom(mensagem) {
         setTimeout(() => alerta.remove(), 2000); // Remove completamente após a transição
     }, 2000);
 }
+
+document.querySelectorAll('button, input, select, textarea, a').forEach(element => {
+    element.addEventListener('focus', (event) => {
+        event.target.style.outline = 'none';
+        event.target.style.boxShadow = 'none';
+    });
+});
